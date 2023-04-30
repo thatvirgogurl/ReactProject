@@ -1,25 +1,25 @@
-
-export default function Post() {
+import {formatISO9075} from "date-fns"
+import { Link } from "react-router-dom";
+export default function Post({_id,title,summary,cover,content,createdAt,author}) {
   return (
     <div>
       <div className="post">
         <div className="Img">
-          <img src="https://images.pexels.com/photos/2417848/pexels-photo-2417848.jpeg?auto=compress&cs=tinysrgb&w=600"></img>
+          <Link to={`/post/${_id}`}>
+            <img src={"http://localhost:4000/" + cover} alt=""></img>
+          </Link>
         </div>
 
         <div className="text">
-          <h2>Full-house battetry backup coming later this year</h2>
+          <Link to={`/post/${_id}`}>
+            <h2>{title}</h2>
+          </Link>
+
           <p className="info">
-            <a className="author">monalisa</a>
-            <time>2023-01-06 16:45</time>
+            <a className="author">{author.username}</a>
+            <time>{formatISO9075(new Date(createdAt))}</time>
           </p>
-          <p className="summary">
-            loDesign Your Blog Posts to Be Easily Scannable Utilize High-Quality
-            Images (or Graphics) Consider Page Load Time Include Compelling CTAs
-            (Calls to Action) The Fine Line Between Creative and Cluttered
-            Encourage Engagement Brand Your Blog Layout Make Your Blog Layout
-            Relate to Your Audience Blog Layout Examples to
-          </p>
+          <p className="summary">{summary}</p>
         </div>
       </div>
     </div>
